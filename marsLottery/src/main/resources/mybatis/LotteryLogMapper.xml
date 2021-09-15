@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.marsLottery.server.dao.LotteryLogDao">
+    <select id="pageBy" resultType="cn.marsLottery.server.po.LotteryLog">
+        select l.* from `lottery_log` l
+        <if test="(lotteryId != null and lotteryId != '')">
+            left join `lottery` lo on lo.id = l.lottery_id
+        </if>
+        <if test="(number != null and number != '')">
+            left join `customer` c on c.id = l.customer_id
+        </if>
+        <where>
+            <if test="lotteryId != null and lotteryId != ''">
+                and lo.id = #{lotteryId}
+            </if>
+            <if test="number != null and number != ''">
+                and c.number like concat(#{number},'%')
+            </if>
+            <if test="isWinner != null and isWinner != ''">
+                and l.is_winner = #{isWinner}
+            </if>
+            <if test="isDispatched != null and isDispatched != ''">
+                and l.is_dispatched = #{isDispatched}
+            </if>
+        </where>
+        order by l.id desc
+    </select>
+</mapper>

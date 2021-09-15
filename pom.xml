@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.jzcscw</groupId>
+  <artifactId>marsLottery-server</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>jz-common</module>
+    <module>jz-generator</module>
+    <module>jz-third</module>
+    <module>marsLottery</module>
+  </modules>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.10.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <!--maven-source-plugin-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+
+    <lombok.version>1.18.2</lombok.version>
+    <freemarker.version>2.3.30</freemarker.version>
+    <hutool.version>5.1.3</hutool.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <redisson.version>3.13.6</redisson.version>
+    <httpclient.version>4.5.13</httpclient.version>
+    <knife4j.version>2.0.8</knife4j.version>
+
+    <tomcat.embed.version>9.0.45</tomcat.embed.version>
+    <jwt.version>0.7.0</jwt.version>
+    <druid.spring.boot.starter.version>1.1.21</druid.spring.boot.starter.version>
+    <mybatis.spring.boot.starter.version>1.3.2</mybatis.spring.boot.starter.version>
+    <hutool.version>5.1.3</hutool.version>
+    <mybatis.plus.version>3.3.1</mybatis.plus.version>
+    <pinyin4j.version>2.5.1</pinyin4j.version>
+    <junit.version>4.12</junit.version>
+    <google.zxing.version>3.2.1</google.zxing.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <debug>true</debug>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

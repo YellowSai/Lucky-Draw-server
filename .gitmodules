@@ -1,0 +1,9 @@
+[submodule "jz-generator"]
+	path = jz-generator
+	url = https://git.jzcscw.cn/common/jz-generator.git
+[submodule "jz-common"]
+	path = jz-common
+	url = https://git.jzcscw.cn/common/jz-common.git
+[submodule "jz-third"]
+	path = jz-third
+	url = https://git.jzcscw.cn/common/jz-third.git

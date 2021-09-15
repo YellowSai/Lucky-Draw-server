@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <property name="logPath" value="/data/logs/mars-lottery-server/"/>
+
+    <appender name="FILE-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <springProfile name="prod">
+            <file>${logPath}/mars-lottery-server-prod.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!--按周压缩-->
+                <fileNamePattern>${logPath}/mars-lottery-server-prod.%d{yyyy-ww}.log.zip</fileNamePattern>
+                <!-- 保存30个数据-->
+                <maxHistory>30</maxHistory>
+                <!--最多保留文件大小-->
+                <totalSizeCap>5GB</totalSizeCap>
+            </rollingPolicy>
+
+            <encoder>
+                <charset>utf-8</charset>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %p | [%t] | %X{traceId} | %C{1}:%M | %L : %m %n</Pattern>
+            </encoder>
+        </springProfile>
+        <springProfile name="test">
+            <file>${logPath}/mars-lottery-server-test.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!--按周压缩-->
+                <fileNamePattern>${logPath}/mars-lottery-server-test.%d{yyyy-ww}.log.zip</fileNamePattern>
+                <!-- 保存30个数据-->
+                <maxHistory>30</maxHistory>
+                <!--最多保留文件大小-->
+                <totalSizeCap>5GB</totalSizeCap>
+            </rollingPolicy>
+
+            <encoder>
+                <charset>utf-8</charset>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %p | [%t] | %X{traceId} | %C{1}:%M | %L : %m %n</Pattern>
+            </encoder>
+        </springProfile>
+    </appender>
+
+
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="cn.marsLottery" level="DEBUG"/>
+        <logger name="cn.jzcscw" level="DEBUG"/>
+    </springProfile>
+
+    <!-- 测试环境 -->
+    <springProfile name="test">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="cn.marsLottery" level="DEBUG"/>
+        <logger name="cn.jzcscw" level="DEBUG"/>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="cn.marsLottery" level="INFO"/>
+        <logger name="cn.jzcscw" level="INFO"/>
+    </springProfile>
+
+    <root level="info">
+        <appender-ref ref="FILE-OUT"/>
+    </root>
+
+</configuration>

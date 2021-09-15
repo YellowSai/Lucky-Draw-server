@@ -1,0 +1,71 @@
+server:
+  port: 8080
+
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    druid:
+      initial-size: 2
+      min-idle: 2
+      max-active: 50
+      # 配置获取连接等待超时的时间
+      max-wait: 6000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-properties: druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: true
+      # 配置监控统计拦截的filters
+      filters: stat
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: psyland
+        login-password: Psyland@2021
+    dynamic:
+      primary: psyland
+      strict: false
+      datasource:
+        psyland:
+          url: jdbc:mysql://localhost:3306/mars_lottery?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=True
+          driverClassName: com.mysql.cj.jdbc.Driver
+          username: root
+          password: Sihasbovmc#2021*&%(
+
+# swagger
+swagger:
+  host: 127.0.0.1
+  basic:
+    enable: true
+    username: root
+    password: 123456
+
+app:
+  domain: localhost
+
+upload:
+  # 默认上传根路径
+  upload-base-path: /data/page/msjpbaiwan/public/upload
+  # 图片访问根路径
+  upload-base-url: /public/upload/
+
+
+#jsontoken
+jwt:
+  subject: mars-lottery
+  # 48小时 8 * 3600 * 1000
+  life: 172800000
+  secret: gtYCqQwTsrmBwhT9N1EpPFolz5ibLia0oBCM7YZnEcJxxKtEq2vR2btIn7AEqVFl

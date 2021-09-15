@@ -1,0 +1,24 @@
+package cn.jzcscw.generator.builder.impl.web;
+
+import cn.jzcscw.generator.builder.IBuilder;
+import cn.jzcscw.generator.config.BuilderConfig;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.sql.DataSource;
+
+@Slf4j
+public class ModelUpdateDTOBuilder extends IBuilder {
+    {
+        absoluteTemplatePath = "java/dto/modelUpdateDTO.ftl";
+        isClass = true;
+    }
+
+    public ModelUpdateDTOBuilder(DataSource dataSource) {
+        super(dataSource);
+    }
+
+    @Override
+    public void build(BuilderConfig config, String table, String model) {
+        super.generateFile(config, table, model, "dto", model + "UpdateDTO.java");
+    }
+}
